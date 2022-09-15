@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.101.0">
+    <title>Album example · Bootstrap v5.2</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/album/">
+    <!-- css부분이 제대로 된 경로가 아니라 css가 적용이 안된다, 따라서 경로를 바꿔준다 (bootstrap 사용) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+
+  <!-- navbar이나 bg class에서 색깔 변경 가능 -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <!-- <div class="container-fluid"> fluid 빼면 container에 맞게 정렬-->
+    <div class="container">
+      <a class="navbar-brand" href="#">Heetae Shop</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <!-- <a class="nav-link active" aria-current="page" href="#">Home</a> active 빼면 하얀색 하이라이트 사라짐-->
+            <!-- href를 바꿔서 Home을 누르면 list로 돌아가게 만듦 -->
+            <a class="nav-link" aria-current="page" href="/products/list">Home</a>
+          </li>
+          <li class="nav-item">
+            <!-- Regist 누르면 form으로 가게 만듦-->
+            <a class="nav-link" href="/products/form">Regist</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <body>  
+    <!-- 요 자리에 들어옴 -->
+    {% block content %} {% endblock %}
+    </body>
+</html>

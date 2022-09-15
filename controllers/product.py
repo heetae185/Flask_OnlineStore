@@ -1,4 +1,4 @@
-from flask import request, render_template
+from flask import request, render_template, redirect, url_for
 from .blueprint import product
 from models.product import Product
 from werkzeug.utils import secure_filename
@@ -23,6 +23,59 @@ def regist():
     Product.insert_one(form_data, thumbnail_img_url, detail_img_url)
     
     return "상품 등록 API입니다."
+
+#상품 리스트 조회 API
+@product.route('/list')
+def get_products():
+    #상품 리스트 정보 < mongo db products 컬렉션에 있는 documents
+    products = Product.find()
+    
+    return render_template('products.html', products_=products)
+
+
+#상품 삭제 API
+@product.route('/<product_id>/delete')
+def delete(product_id):
+    #상품 삭제
+    Product.delete_one(product_id)
+    
+    return "상품이 정상적으로 삭제되었습니다."
+
+
+#상품 정보 수정 API
+@product.route('/<product_id>/update', methods=['POST'])
+def update(product_id):
+    #상품 수정
+    form_data = request.form
+    thumbnail_img = request.files.get('thumbnail_img')
+    detail_img = request.files.get('detail_img')
+    thumbnail_img_url = ""
+    detail_img_url = ""
+    
+    if thumbnail_img:
+        thumbnail_img_url = _upload_file(thumbnail_img)
+    if detail_img:
+        detail_img_url = _upload_file(detail_img)
+    
+    Product.update_one(product_id, form_data, thumbnail_img_url, detail_img_url)
+
+    return redirect(url_for('product.get_products'))
+
+
+#상품 정보 수정 페이지 API
+@product.route('/<product_id>/edit')
+def edit(product_id):
+    product = Product.find_one(product_id)
+    
+    return render_template('product_edit.html', product_=product)
+
+
+#상품 상세 정보 페이지 API
+@product.route('/<product_id>/detail')
+def detail(product_id):
+    product = Product.find_one(product_id)
+    
+    return render_template('product_detail.html', product_=product)
 
 
 def _upload_file(img_file):

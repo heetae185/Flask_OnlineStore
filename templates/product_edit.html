@@ -15,22 +15,24 @@
             <div>
                 <hr>
                 <!-- bootstrap text alignment -->
-                <h3 class="pt-2 pb-2 text-center">상품 등록</h3>
+                <h3 class="pt-2 pb-2 text-center">상품 수정</h3>
                 <hr>
             </div>
-            <form action="/products/regist" method="post" enctype="multipart/form-data">
+            <!-- product_['id']로 바꿔줘야 상품 수정 API와 연동이 된다 -->
+            <form action="/products/{{product_['_id']}}/update" method="post" enctype="multipart/form-data">
                 <div class="mb-3">
                   <label for="name" class="form-label">Product name</label>
-                  <input name="name" type="text" class="form-control" id="name" aria-describedby="emailHelp">
+                  <!-- value값으로 product['name']을 미리 넣어준다 -->
+                  <input name="name" value="{{product_['name']}}" type="text" class="form-control" id="name" aria-describedby="emailHelp">
                 </div>
                 <div class="mb-3">
                   <label for="price" class="form-label">Product price</label>
-                  <input name="price" type="text" class="form-control" id="price">
+                  <input name="price" value="{{product_['price']}}" type="text" class="form-control" id="price">
                 </div>
                 <div class="mb-3">
                     <label for="description" class="form-label">Product description</label>
-                    <!-- textarea 사용하여 칸 넓힘 -->
-                    <textarea name="description" type="text" class="form-control" id="description"></textarea>
+                    <!-- textarea라 product['description'] 따로 넣어준다 -->
+                    <textarea name="description" type="text" class="form-control" id="description">{{product_['description']}}</textarea>
                 </div>
                   <div class="mb-3">
                     <label for="thumbnail_img" class="form-label">Product thumbnail_img</label>
@@ -41,7 +43,7 @@
                     <input name="detail_img" type="file" class="form-control" id="detail_img">
                   </div>
                 <!-- w-100은 width 100% -->
-                <button type="submit" class="btn btn-primary w-100">Submit</button>
+                <button type="submit" class="btn btn-primary w-100">Update</button>
               </form>
         </div>
         <div class="col-4">
