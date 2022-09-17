@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <script>
+      alert('{{messages[-1]}}')
+    </script>
+  {% endif %}
+{% endwith %}
+<!-- style은 색깔 or 간격 등 디자인 적인 요소-->
+<!-- id는 하나의 구조를 특정화 하기 위해서 사용 (css)-->
+<!-- class는 공통적으로 조작을 하기 위해 사용-->
+
+<!-- div 안에 container를 넣어서 여백을 만들 수 있음 -->
+<div class="container">
+    <div class="row">
+        <!-- 총 12라고 생각 할 때 각각 4만큼 길이를 부여한 것-->
+        <div class="col-4">
+
+        </div>
+        <div class="col-4">
+            <div>
+                <hr>
+                <!-- bootstrap text alignment -->
+                <h3 class="pt-2 pb-2 text-center">회원가입</h3>
+                <hr>
+            </div>
+            <form action="/users/signup" method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <!-- required 붙이면 기본 기능으로 input 값 있어야 작동-->
+                  <input name="email" type="text" class="form-control" id="email" aria-describedby="emailHelp" required>
+                </div>
+                <!-- type은 password로-->
+                <div class="mb-3">
+                  <label for="password" class="form-label">Password</label>
+                  <input name="password" type="password" class="form-control" id="password" required>
+                </div>
+                <div class="mb-3">
+                  <label for="password_confirmation" class="form-label">Password confirmation</label>
+                  <input name="password_confirmation" type="password" class="form-control" id="password_confirmation" required>
+                </div>
+                <!-- w-100은 width 100% -->
+                <button type="submit" class="btn btn-primary w-100">Sign up</button>
+              </form>
+        </div>
+        <div class="col-4">
+            
+        </div>
+    </div>
+    
+</div>
+{% endblock %}

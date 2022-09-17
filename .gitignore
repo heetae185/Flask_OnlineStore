@@ -4,6 +4,9 @@
 ### Requirements ###
 requirements.txt
 
+### Picture Contents ###
+static/uploads
+
 ### Flask ###
 instance/*
 !instance/.gitignore
