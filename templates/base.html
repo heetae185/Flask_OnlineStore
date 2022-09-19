@@ -33,9 +33,17 @@
             <a class="nav-link" href="/products/form">Regist</a>
           </li>
           <li class="nav-item">
-            <!-- Regist 누르면 form으로 가게 만듦-->
-            <a class="nav-link" href="/users/form">Signup</a>
+            <a class="nav-link" href="/users/form">Sign up</a>
           </li>
+          {% if session.get('user_id') %}
+            <li class="nav-item">
+              <a class="nav-link" href="/users/signout">Sign out</a>
+            </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="/users/signin">Sign in</a>
+          </li>
+          {% endif %}
         </ul>
       </div>
     </div>
