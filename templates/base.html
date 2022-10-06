@@ -28,10 +28,12 @@
             <!-- href를 바꿔서 Home을 누르면 list로 돌아가게 만듦 -->
             <a class="nav-link" aria-current="page" href="/products/list">Home</a>
           </li>
-          <li class="nav-item">
-            <!-- Regist 누르면 form으로 가게 만듦-->
-            <a class="nav-link" href="/products/form">Regist</a>
-          </li>
+          {% if session.get('is_admin') %}
+            <li class="nav-item">
+              <!-- Regist 누르면 form으로 가게 만듦-->
+              <a class="nav-link" href="/products/form">Regist</a>
+            </li>
+          {% endif %}
           <li class="nav-item">
             <a class="nav-link" href="/users/form">Sign up</a>
           </li>

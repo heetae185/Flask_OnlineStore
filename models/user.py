@@ -15,13 +15,15 @@ class User():
             'created_at': int(datetime.now().timestamp()),
             'updated_at': int(datetime.now().timestamp())
     })
-        
+       
+    @staticmethod 
     def check_email(email):
         db = conn_mongodb()
         user = db.users.find_one({'email': email})
         
         return False if user else True
     
+    @staticmethod
     def sign_in(login_data):
         db = conn_mongodb()
         user = db.users.find_one({'email': login_data['email']})
@@ -32,7 +34,13 @@ class User():
             return False
         
         return user
-            
-        
-        
     
+    @staticmethod
+    def find_one(user_id):
+        db = conn_mongodb()
+        user = db.users.find_one({'_id': ObjectId(user_id)})
+        
+        if not user:
+            return False
+        
+        return user
