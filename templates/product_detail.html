@@ -16,8 +16,15 @@
                     <hr>
                     <p class="card-text">{{product_['description']}}</p>
                     <hr>
-                    <!-- text-end 하면 텍스트가 오른쪽 끝으로 쏠림 -->
-                    <p class="card-text text-end">{{product_['price']}}원</p>
+                    <div class="d-flex flex-row-reverse align-items-center">
+                        <div class="p-2">
+                            <a href="/products/{{product_['_id']}}/order" class="btn btn-outline-primary">구매하기</a>
+                        </div>
+                        <div class="p-2">
+                            <!-- text-end 하면 텍스트가 오른쪽 끝으로 쏠림 -->
+                            <p class="card-text text-end">{{product_['price']}}원</p>
+                        </div>
+                      </div>
                     </div>
                 </div>
                 </div>
