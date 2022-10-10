@@ -27,7 +27,7 @@
             </div>
             <hr>
             <h4>배송지 / 주문자 정보</h4>
-            <form action="/products/regist" method="post">
+            <form action="/products/{{product_['_id']}}/order" method="post">
                 <!-- row와 col을 이용해서 우편번호 / 우편번호 찾기 버튼 정렬하기 -->
                 <div class="row">
                   <div class="col-6">

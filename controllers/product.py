@@ -1,7 +1,8 @@
 from flask import request, render_template, redirect, url_for
 from .blueprint import product
-from .auth import is_admin
+from .auth import is_admin, check_login, redirect_to_signin_form
 from models.product import Product
+from models.order import Order
 from werkzeug.utils import secure_filename
 from datetime import datetime
 import os
@@ -95,6 +96,20 @@ def order_form(product_id):
     product = Product.find_one(product_id)
     
     return render_template('order_form.html', product_=product)
+
+
+# 주문 생성 API
+@product.route('/<product_id>/order', methods=['POST'])
+def order(product_id):
+    user = check_login()
+    if not user:
+        return redirect_to_signin_form()
+    product = Product.find_one(product_id)
+    form_data = request.form
+    
+    Order.insert_one(product, form_data, user)
+    
+    return render_template('payment_complete.html')
     
 
 
