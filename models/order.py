@@ -7,7 +7,7 @@ class Order():
     @staticmethod
     def insert_one(product, form, user):
         db = conn_mongodb()
-        db.orders.insert_one({
+        new_order_doc = db.orders.insert_one({
             'status': 'pending',
             'product': product,
             'postcode': form['postcode'],
@@ -20,6 +20,9 @@ class Order():
             'created_at': int(datetime.now().timestamp()),
             'updated_at': int(datetime.now().timestamp())
         })
+        
+        return new_order_doc.inserted_id    # inserted_id 하면 생성되었을 때 고유 번호 리턴해줌
+        
         
     @staticmethod
     def find():
