@@ -1,4 +1,4 @@
-from flask import request, render_template, flash, redirect, url_for, session
+from flask import request, render_template, flash, redirect, url_for, session, make_response
 from .blueprint import user
 from .blueprint import product
 from .blueprint import order
@@ -18,6 +18,5 @@ def request_payment():
     order = Order.find_one(order_id)
     
     return render_template('payment.html', order=order)
-
 
 
