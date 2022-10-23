@@ -13,7 +13,8 @@ def get_orders():
     if not user:
         return redirect_to_signin_form()
     
-    orders = Order.find()
+    match = {'status': 'complete'}
+    orders = Order.find(match)
     return render_template('orders.html', orders=orders)
 
 

@@ -30,7 +30,7 @@
                     imp_uid: rsp.imp_uid,
                     merchant_uid: rsp.merchant_uid
                 }
-                // 결제 성공 시
+                // 결제 성공 시 jQuery로 이런 data를 특정 형식으로 받아오고 싶다는 메소드다
                 jQuery.ajax({
                     url: "/payments/complete", // 예: https://www.myservice.com/payments/complete
                     method: "POST",
@@ -38,11 +38,21 @@
                     data: JSON.stringify(data)
                 }).done(function (data) {
                     // 가맹점 서버 결제 API 성공시 로직
+                    if (data.message === 'success') {
+                        const order_id = data.order_id
+                        // 데이터에서 전달받은 것들을 요청 할 것이다 success/에
+                        location.herf = `/payments/success?order_id=${order_id}`
+                    }
+                    else {
+                        alert(data.message)
+                        location.herf = `/products/list`
+                    }
                 })
                 
             } else {
                 console.log('결제 실패')
-                // 결제 실패 시 로직,
+                alert('결제에 실패하였습니다.')
+                location.herf = `/products/list`
             }
         });
       }

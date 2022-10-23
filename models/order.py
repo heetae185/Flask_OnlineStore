@@ -25,9 +25,9 @@ class Order():
         
         
     @staticmethod
-    def find():
+    def find(match={}): # match가 없으면 {}가 들어감, 즉 status가 complete면 match에 들어감 
         db = conn_mongodb()
-        orders = db.orders.find({})
+        orders = db.orders.find(match)
         
         return orders
     
@@ -37,3 +37,9 @@ class Order():
         order = db.orders.find_one({'_id': ObjectId(order_id)})
         
         return order
+    
+    
+    @staticmethod
+    def update_one(order_id, status):
+        db = conn_mongodb()
+        db.orders.update_one({'_id': ObjectId(order_id)}, {'$set': status})
