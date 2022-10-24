@@ -1,9 +1,6 @@
 # Created by https://www.toptal.com/developers/gitignore/api/venv,flask
 # Edit at https://www.toptal.com/developers/gitignore?templates=venv,flask
 
-### Requirements ###
-requirements.txt
-
 ### Picture Contents ###
 static/uploads
 
